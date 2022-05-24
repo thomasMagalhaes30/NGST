@@ -1,5 +1,7 @@
 # National Gabriel and Space Thomas
 
+NGST est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - Web Transverse)
+
 ## Liens utiles
 
 - [Web transverse](https://mavincent7.github.io/)
