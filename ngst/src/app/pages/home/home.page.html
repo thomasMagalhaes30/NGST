@@ -14,7 +14,16 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app? YESSSSSSSSSSSSSSSSSSSS</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6">
+            <ion-item>
+              <ion-img [src]="apod.url"></ion-img>
+              <ion-label>{{apod.title}}</ion-label>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
   </div>
 </ion-content>
