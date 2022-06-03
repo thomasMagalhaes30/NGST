@@ -1,32 +1,55 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      🚀 NGST 🚀
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">🚀 NGST 🚀 Full</ion-title>
+<ion-menu side="start" content-id="main-content">
+  <ion-header>
+    <ion-toolbar translucent>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="myMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item><a href="/home" class="link">Accueil</a></ion-item>
+      <ion-item><a href="/hasard" class="link">Récupérer une image au hasard</a></ion-item>
+      <ion-item><a href="/license" class="link">License</a></ion-item>
+      <ion-item><a href="/authors" class="link">Authors</a></ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-  <div id="container">
-    <ion-grid>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="6">
-            <ion-item>
-              <ion-img [src]="apod.url"></ion-img>
-              <ion-label>{{apod.title}}</ion-label>
-            </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <a [href]="apod.hdurl" target="_blank"><ion-button id="seeApodInHD">Voir en HD</ion-button></a>
-      </ion-row>
-    </ion-grid>
-    
-  </div>
-</ion-content>
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        🚀 NGST 🚀
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+  
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">🚀 NGST 🚀 Full</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <div id="container">
+  
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+              <ion-item>
+                <ion-img [src]="apod.url"></ion-img>
+                <ion-label>{{apod.title}}</ion-label>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <a [href]="apod.hdurl" target="_blank"><ion-button id="seeApodInHD">Voir en HD</ion-button></a>
+        </ion-row>
+      </ion-grid>
+      
+    </div>
+  </ion-content>
+</div>
