@@ -25,31 +25,40 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content [fullscreen]="true">
-  
+
     <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">🚀 NGST 🚀 Full</ion-title>
       </ion-toolbar>
     </ion-header>
-  
+
     <div id="container">
-  
+
       <ion-grid>
         <ion-row class="ion-justify-content-center">
           <ion-col size="6">
               <ion-item>
-                <ion-img [src]="apod.url"></ion-img>
-                <ion-label>{{apod.title}}</ion-label>
+                <ion-img id="apodImg" [src]="apod.url"></ion-img>
               </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-center">
-          <a [href]="apod.hdurl" target="_blank"><ion-button id="seeApodInHD">Voir en HD</ion-button></a>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label>{{apod.title}}</ion-label>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-button id="seeApodInHD">Voir en HD</ion-button>
         </ion-row>
       </ion-grid>
-      
+
     </div>
   </ion-content>
+
 </div>
+
+
