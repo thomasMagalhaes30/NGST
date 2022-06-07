@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class HomePage {
   public apod: Object = {};
 
+  public titleApp = "🚀 NGST 🚀";
+
   // todo ajouter le service par injection de dépendances dans le constructeur
   constructor() {
 
