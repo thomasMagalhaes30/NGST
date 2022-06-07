@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
+import {IApod} from "../../@entities/apod";
 
 @Component({
   selector: 'app-home',
@@ -11,31 +13,21 @@ export class HomePage {
   public titleApp = "🚀 NGST 🚀";
 
   // todo ajouter le service par injection de dépendances dans le constructeur
-  constructor() {
+  constructor(private _nasa : NasaApodService) {
 
   }
 
+  
   ngAfterViewInit() {
-
-    let today = new Date();
-    let todayString = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDay();
-
-    fetch("https://api.nasa.gov/planetary/apod?date="+ todayString+"&api_key=BlNiKpyUAovsd7JgTbofzaqUkFrYoFwpAI63SE8x")
-    .then(response => response.json())
-    .then(data => {
-      if (data === undefined || data === null)
-        return;
-      this.apod["date"] = data.date;
-      this.apod["url"] = data.url;
-      this.apod["title"] = data.title;
-      this.apod["hdurl"] = data.hdurl;
-      this.apod["explanation"] = data.explanation;
+    this._nasa.getTodayApod().toPromise()
+    .then(apod => {
+      this.apod = apod;
 
       const apodImg = document.getElementById('apodImg');
       const btn = document.getElementById('seeApodInHD');
 
       btn.addEventListener('click', function(){
-        apodImg.setAttribute('src', data.hdurl);
+        apodImg.setAttribute('src', apod.hdurl);
         btn.innerHTML = "HD activée";
       });
     })
