@@ -35,7 +35,7 @@ jobs:
         run: |
           cd ngst
           npm ci
-          npm run build:ci
+          npm run build
 
       - name: Test
         run: |
