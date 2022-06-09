@@ -40,4 +40,4 @@ jobs:
       - name: Test
         run: |
           cd ngst
-          npm test -- --configuration=ci --code-coverage
+          npm test -- --configuration=ci --code-coverage --browsers ChromeHeadless
