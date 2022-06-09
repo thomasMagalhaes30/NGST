@@ -32,4 +32,6 @@ jobs:
       #  run: npm run build -- --configuration production
 
       - name: Test
-        run: npm test -- --configuration=ci --code-coverage
+        run: |
+          cd ngst
+          npm test -- --configuration=ci --code-coverage
