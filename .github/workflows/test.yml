@@ -6,12 +6,12 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches:
-    - main
-    - dev
+      - main
+      - dev
   pull_request:
     branches:
-    - main
-    - dev
+      - main
+      - dev
       
 jobs:
   build:
@@ -35,6 +35,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      
+      - name: install angular cli
+        run: npm install -g @angular/cli > /dev/null
 
       - name: ng test --configuration ci --code-coverage
         run: |
