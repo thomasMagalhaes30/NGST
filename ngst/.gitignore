@@ -30,3 +30,6 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+
+# no commit api key 🙃
+/src/environments/environment.local.ts
