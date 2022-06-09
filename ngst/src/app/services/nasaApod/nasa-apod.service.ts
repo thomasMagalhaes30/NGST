@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IApod} from "../../@entities/apod";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class NasaApodService {
     if (year && month && day ){
       params = params.set('date', `${year}-${month}-${day}`);
     }
-    params = params.set('api_key', "BlNiKpyUAovsd7JgTbofzaqUkFrYoFwpAI63SE8x");
+
+    params = params.set('api_key', environment.nasaApiKey);
 
     return this._httpClient.get<IApod>(`https://api.nasa.gov/planetary/apod`, {params});
   }
