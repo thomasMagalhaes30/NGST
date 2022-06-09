@@ -31,6 +31,12 @@ jobs:
       #- name: Build
       #  run: npm run build -- --configuration production
 
+      - name: npm ci and npm run build
+        run: |
+          cd ngst
+          npm ci
+          npm run build:ci
+
       - name: Test
         run: |
           cd ngst
