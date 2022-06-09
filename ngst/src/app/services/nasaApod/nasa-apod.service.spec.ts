@@ -2,6 +2,7 @@ import {fakeAsync, TestBed} from '@angular/core/testing';
 
 import { NasaApodService } from './nasa-apod.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {environment} from "../../../environments/environment";
 
 describe('NasaApodService', () => {
   let service: NasaApodService;
@@ -36,7 +37,7 @@ describe('NasaApodService', () => {
     let mySubscription = service.getTodayApod()
       .subscribe(_apod => apodDate = _apod.date);
 
-    const req = httpTestingController.expectOne('https://api.nasa.gov/planetary/apod?api_key=BlNiKpyUAovsd7JgTbofzaqUkFrYoFwpAI63SE8x');
+    const req = httpTestingController.expectOne(`https://api.nasa.gov/planetary/apod?api_key=${environment.nasaApiKey}`);
 
     req.flush({
       date: todayDateString,
@@ -79,7 +80,8 @@ describe('NasaApodService', () => {
     let mySubscription = service.getApodByDate(2001, 12, 30)
       .subscribe(_apod => apodDate = _apod.date);
 
-    const req = httpTestingController.expectOne('https://api.nasa.gov/planetary/apod?date=2001-12-30&api_key=BlNiKpyUAovsd7JgTbofzaqUkFrYoFwpAI63SE8x');
+
+    const req = httpTestingController.expectOne(`https://api.nasa.gov/planetary/apod?date=2001-12-30&api_key=${environment.nasaApiKey}`);
 
     req.flush({
       date: "2001-12-30",
