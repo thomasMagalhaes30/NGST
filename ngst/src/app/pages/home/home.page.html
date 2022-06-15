@@ -1,4 +1,4 @@
-<ion-menu side="start" content-id="main-content">
+<ion-menu menuId="menu-ngst" side="start" content-id="main-content">
   <ion-header>
     <ion-toolbar translucent>
       <ion-buttons slot="start">
@@ -28,17 +28,10 @@
 
   <ion-content [fullscreen]="true">
 
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">{{ titleApp }} Full</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
     <div class="container">
-      <app-apod data="apod"></app-apod>
+      <app-apod></app-apod>
     </div>
   </ion-content>
-
 </div>
 
 
