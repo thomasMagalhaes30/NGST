@@ -15,9 +15,20 @@ NGST est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - 
 npm install
 ```
 
+Pour une configuration local
+aller dans `NGST/ngst/src/environments`
+```bash
+cp environnement.ts environnement.local.ts
+```
+puis completez le !
+
 ## Lancement
 ```bash
 ionic serve
+```
+ou avec la configuration
+```
+ionic serve --configuration local
 ```
 
 ## Auteurs
