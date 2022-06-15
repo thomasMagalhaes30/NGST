@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +13,15 @@ export class HomePage {
   public isLandscape : boolean;
 
   // todo ajouter le service par injection de dépendances dans le constructeur
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private menu: MenuController) {
     this.isLandscape = platform.isLandscape();
   }
 
   ngAfterViewInit() {
     if (this.isLandscape)
     {
-      let ionMenu = document.getElementsByTagName('ion-menu');
-      
+      this.menu.enable(true, 'first');
+      this.menu.open("menu-ngst");
     }
   }
 }
