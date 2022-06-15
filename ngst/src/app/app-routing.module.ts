@@ -11,10 +11,6 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'sandbox',
-    loadChildren: () => import('./pages/sandbox/sandbox.module').then( m => m.SandboxPageModule)
-  },
 ];
 
 @NgModule({
