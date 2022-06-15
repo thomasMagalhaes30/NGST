@@ -34,28 +34,8 @@
       </ion-toolbar>
     </ion-header>
 
-    <div id="container">
-
-      <ion-grid>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="6">
-              <ion-item>
-                <ion-img id="apodImg" [src]="apod.url"></ion-img>
-              </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-justify-content-center">
-            <ion-col size="6">
-              <ion-item>
-                <ion-label>{{apod.title}}</ion-label>
-              </ion-item>
-            </ion-col>
-        </ion-row>
-        <ion-row class="ion-justify-content-center">
-          <ion-button id="seeApodInHD">Voir en HD</ion-button>
-        </ion-row>
-      </ion-grid>
-
+    <div class="container">
+      <app-apod data="apod"></app-apod>
     </div>
   </ion-content>
 
