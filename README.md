@@ -31,6 +31,11 @@ ou avec la configuration
 ionic serve --configuration local
 ```
 
+## Lancer les tests
+```
+ng test "--configuration" "ci" "--code-coverage" "--browsers" "ChromeHeadless"
+```
+
 ## Auteurs
 - [MAGALHAES Thomas](https://github.com/thomasMagalhaes30)
 - [THEUWS Gabriel](https://github.com/Amiralgaby)
