@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  nasaApiKey: "BlNiKpyUAovsd7JgTbofzaqUkFrYoFwpAI63SE8x",
+  nasaApiKey: "",
   mapquestApiKey: "",
 };
 
