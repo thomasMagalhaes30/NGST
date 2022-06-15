@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {Observable, of} from "rxjs";
 import {IApod} from "../../@entities/apod";
 import {environment} from "../../../environments/environment";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NasaApodService {
+
+  private static defaultApod: IApod = {
+    date: "",
+    explanation: "",
+    hdurl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original-wordmark.svg",
+    title: "Une erreur est survenu",
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg"
+  };
 
   constructor(private _httpClient : HttpClient) { }
 
@@ -29,7 +38,17 @@ export class NasaApodService {
 
     params = params.set('api_key', environment.nasaApiKey);
 
-    return this._httpClient.get<IApod>(`https://api.nasa.gov/planetary/apod`, {params});
+    // en cas d'erreur on retourne null
+    return this._httpClient.get<IApod>(`https://api.nasa.gov/planetary/apod`, {params})
+      .pipe(
+        catchError(error => {
+          let defaultApod = { ...NasaApodService.defaultApod };
+          if (error instanceof HttpErrorResponse){
+            defaultApod.title = `Une erreur ${error.status} est survenu`
+          }
+          return of(defaultApod);
+        })
+      );
   }
 
   public getRandomApod() : Observable<IApod>{

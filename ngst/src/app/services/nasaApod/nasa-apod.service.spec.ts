@@ -3,6 +3,7 @@ import {fakeAsync, TestBed} from '@angular/core/testing';
 import { NasaApodService } from './nasa-apod.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {environment} from "../../../environments/environment";
+import {IApod} from "../../@entities/apod";
 
 describe('NasaApodService', () => {
   let service: NasaApodService;
@@ -92,6 +93,22 @@ describe('NasaApodService', () => {
     });
 
     expect(apodDate).toEqual("2001-12-30");
+    mySubscription.unsubscribe();
+  }));
+
+  // cas ou l'api ne repond pas avec une 200
+  it('getApodButApiNotUnreachable', fakeAsync(() => {
+    let apod : IApod;
+
+    let mySubscription = service.getTodayApod()
+      .subscribe(_apod => apod = _apod);
+
+    const req = httpTestingController.expectOne(`https://api.nasa.gov/planetary/apod?api_key=${environment.nasaApiKey}`);
+
+    const msg = '404 error';
+    req.flush(msg, { status: 404, statusText: 'Not Found' });
+
+    expect(apod.title).toContain("404");
     mySubscription.unsubscribe();
   }));
 
