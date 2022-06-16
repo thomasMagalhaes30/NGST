@@ -1,6 +1,5 @@
 import { Component} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',

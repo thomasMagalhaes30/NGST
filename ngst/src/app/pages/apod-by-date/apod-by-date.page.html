@@ -30,7 +30,12 @@
   <ion-content [fullscreen]="true">
 
     <div class="container">
-      <app-apod strategieToGetApod="random"></app-apod>
+      <div class="row d-flex">
+        <div class="ion-text-center mx-auto">
+          <ion-input (ionBlur)="onBlur($event)" min="{{ dataInputDate.minimum }}" max="{{ dataInputDate.today }}" [value]="dataInputDate.today" type="date"></ion-input>
+          <app-apod strategieToGetApod="byDate" [internalEmitterDate]="emitterDate"></app-apod>
+        </div>
+      </div>
     </div>
   </ion-content>
 </div>

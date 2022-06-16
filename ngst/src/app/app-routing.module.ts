@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'random',
     loadChildren: () => import('./pages/random/random.module').then( m => m.RandomPageModule)
   },
+  {
+    path: 'apod-by-date',
+    loadChildren: () => import('./pages/apod-by-date/apod-by-date.module').then( m => m.ApodByDatePageModule)
+  },
 ];
 
 @NgModule({
