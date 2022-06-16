@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { RandomPage } from './random.page';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('RandomPage', () => {
   let component: RandomPage;
@@ -10,7 +11,7 @@ describe('RandomPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RandomPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RandomPage);
