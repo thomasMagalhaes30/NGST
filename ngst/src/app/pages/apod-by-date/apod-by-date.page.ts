@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Platform, MenuController  } from '@ionic/angular';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Platform, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-apod-by-date',
@@ -11,8 +11,10 @@ export class ApodByDatePage implements OnInit {
   public titleApp = "🚀 NGST 🚀";
   public isLandscape : boolean;
 
-
   dataInputDate = {};
+
+  @Output() 
+  emitterDate = new EventEmitter<Date>();
 
   constructor(public platform: Platform, private menu: MenuController) { }
 
@@ -30,6 +32,11 @@ export class ApodByDatePage implements OnInit {
       this.menu.enable(true, 'first');
       this.menu.open("menu-ngst");
     }
+  }
+
+  onBlur(event) {
+    const inputValue = event.target.value;
+    this.emitterDate.emit(new Date(inputValue));
   }
 
 }
