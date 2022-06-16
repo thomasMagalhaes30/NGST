@@ -22,10 +22,10 @@ export class NasaApodService {
 
   /**
    * Retourne une date aléatoire entre une date de début et une date de fin
-   * @param start la date de début, min date par défaut
+   * @param start la date de début, min date par défaut (attention la date doit être après le 16-06-1995)
    * @param end la date de fin, aujourd'hui par défaut
    */
-  private static randomDate(start = new Date(0) , end = new Date()) : Date{
+  private static randomDate(start = new Date("1995-06-16") , end = new Date()) : Date{
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
   }
 
