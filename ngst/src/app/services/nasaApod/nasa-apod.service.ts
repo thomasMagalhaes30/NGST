@@ -38,7 +38,7 @@ export class NasaApodService {
 
     params = params.set('api_key', environment.nasaApiKey);
 
-    // en cas d'erreur on retourne null
+    // en cas d'erreur on retourne un apod par défaut
     return this._httpClient.get<IApod>(`https://api.nasa.gov/planetary/apod`, {params})
       .pipe(
         catchError(error => {
