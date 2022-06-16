@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
 
 @Component({
@@ -8,12 +8,22 @@ import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
 })
 export class ApodComponent implements OnInit {
 
+  @Input()
+  public strategieToGetApod;
   public apod: Object = {};
 
   constructor(private _nasa : NasaApodService) { }
 
   ngOnInit() {
-    this._nasa.getTodayApod().toPromise()
+    let promiseToHandle;
+
+    if (this.strategieToGetApod === "random") {
+      promiseToHandle = this._nasa.getRandomApod();
+    } else {
+      promiseToHandle = this._nasa.getTodayApod();
+    }
+
+    promiseToHandle.toPromise()
     .then(apod => {
       this.apod = apod;
 

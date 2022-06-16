@@ -32,4 +32,6 @@ npm-debug.log*
 /www
 
 # no commit api key 🙃
-/src/environments/environment.local.ts
+/src/environments/
+!/src/environments/environment.prod.ts
+!/src/environments/environment.ts
