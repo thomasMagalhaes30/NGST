@@ -18,7 +18,7 @@ npm install
 Pour une configuration local
 aller dans `NGST/ngst/src/environments`
 ```bash
-cp environnement.ts environnement.local.ts
+cp environment.ts environment.local.ts
 ```
 puis completez le !
 

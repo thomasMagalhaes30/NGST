@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'random',
+    loadChildren: () => import('./pages/random/random.module').then( m => m.RandomPageModule)
+  },
 ];
 
 @NgModule({
