@@ -11,14 +11,18 @@ NGST est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - 
 - [Browser API Earth](https://api.nasa.gov/#earth)
 
 ## Installation
+```sh
+cd ngst/
+```
+
 ```bash
 npm install
 ```
+aller dans `NGST/ngst/src/environments`
 
 Pour une configuration local
-aller dans `NGST/ngst/src/environments`
 ```bash
-cp environment.ts environment.local.ts
+cp src/environments/environment.ts src/environments/environment.local.ts
 ```
 puis completez le !
 
