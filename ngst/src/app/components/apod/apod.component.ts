@@ -22,7 +22,7 @@ export class ApodComponent implements OnInit, OnDestroy {
   constructor(private _nasa : NasaApodService) { }
 
   ngOnDestroy(): void {
-    this.internalEmitterDate.unsubscribe();
+    this.internalEmitterDate?.unsubscribe();
   }
 
   ngOnInit() {
