@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable, of} from "rxjs";
-import {IApod} from "../../@entities/apod";
-import {environment} from "../../../environments/environment";
+import {IApod} from "@entities/apod";
+import {environment} from "@env/environment";
 import {catchError} from "rxjs/operators";
 
 @Injectable({
@@ -38,7 +38,7 @@ export class NasaApodService {
 
     params = params.set('api_key', environment.nasaApiKey);
 
-    // en cas d'erreur on retourne null
+    // en cas d'erreur on retourne un apod par défaut
     return this._httpClient.get<IApod>(`https://api.nasa.gov/planetary/apod`, {params})
       .pipe(
         catchError(error => {

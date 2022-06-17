@@ -1,5 +1,8 @@
 {
   "name": "ionic-app-base",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

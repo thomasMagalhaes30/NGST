@@ -5,7 +5,14 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"],
+      "@test/*": ["test/*"],
+      "@entities/*": ["src/app/@entities/*"],
+      "@capacitor/*": ["__mocks__/@capacitor/*"]
+    }
   },
   "files": [
     "src/test.ts",
