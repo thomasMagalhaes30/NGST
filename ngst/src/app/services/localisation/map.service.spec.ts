@@ -88,5 +88,14 @@ describe('MapService', () => {
     expect(result.coords.longitude).toEqual(20);
   });
 
-  // todo faire un test dans le cas ou getCurrentPosition à une erreur
+  // test dans le cas ou getCurrentPosition à une erreur
+  it('getPositionByGeolocationWithError', async () => {
+    spyOn(Geolocation, 'getCurrentPosition');
+    (Geolocation.getCurrentPosition as any)
+      .withArgs()
+      .and.returnValue(Promise.reject("User denied Geolocation"));
+
+    await expectAsync(service.getPositionByGeolocation()).toBeRejected("User denied Geolocation")
+  });
+
 });
