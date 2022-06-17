@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
-import {Observable, of} from "rxjs";
+import {observable, Observable, of} from "rxjs";
 import { IApod } from 'src/app/@entities/apod';
 
 @Component({
@@ -8,7 +8,7 @@ import { IApod } from 'src/app/@entities/apod';
   templateUrl: './apod.component.html',
   styleUrls: ['./apod.component.scss'],
 })
-export class ApodComponent implements OnInit {
+export class ApodComponent implements OnInit, OnDestroy {
 
   @Input()
   public strategieToGetApod : string;
@@ -16,18 +16,20 @@ export class ApodComponent implements OnInit {
   @Input()
   public internalEmitterDate : EventEmitter<Date>;
 
+  @Input()
   public apod: Object = {};
 
   constructor(private _nasa : NasaApodService) { }
+
+  ngOnDestroy(): void {
+    this.internalEmitterDate.unsubscribe();
+  }
 
   ngOnInit() {
 
     let promiseToHandle : Observable<IApod>;
 
     switch(this.strategieToGetApod) {
-      case "random": {
-        promiseToHandle = this._nasa.getRandomApod();
-      }
       case "byDate": {
         if (this.internalEmitterDate) {
           this.internalEmitterDate.asObservable().subscribe((mydate : Date) => {
