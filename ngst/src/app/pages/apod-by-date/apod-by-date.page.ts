@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Platform, MenuController } from '@ionic/angular';
+import { NasaApodService } from 'src/app/services/nasaApod/nasa-apod.service';
 
 @Component({
   selector: 'app-apod-by-date',
@@ -13,10 +14,10 @@ export class ApodByDatePage implements OnInit {
 
   dataInputDate = {};
 
-  @Output() 
-  emitterDate = new EventEmitter<Date>();
+  @Output()
+  public apod = {};
 
-  constructor(public platform: Platform, private menu: MenuController) { }
+  constructor(public platform: Platform, private menu: MenuController, private nasa : NasaApodService) { }
 
   ngOnInit() {
     this.isLandscape = this.platform.isLandscape();
@@ -36,7 +37,18 @@ export class ApodByDatePage implements OnInit {
 
   onBlur(event) {
     const inputValue = event.target.value;
-    this.emitterDate.emit(new Date(inputValue));
+    const dateInput = new Date(inputValue);
+    this.nasa.getApodByDate(dateInput.getFullYear(), dateInput.getMonth(), dateInput.getDate()).subscribe(apod => {
+      this.apod = apod;
+
+      const apodImg = document.getElementById('apodImg');
+      const btn = document.getElementById('seeApodInHD');
+
+      btn.addEventListener('click', function(){
+        apodImg.setAttribute('src', apod.hdurl);
+        btn.innerHTML = "HD activée";
+      });
+    });
   }
 
 }
