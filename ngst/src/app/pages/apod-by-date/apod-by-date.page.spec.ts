@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { ApodByDatePage } from './apod-by-date.page';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('ApodByDatePage', () => {
   let component: ApodByDatePage;
@@ -10,7 +11,7 @@ describe('ApodByDatePage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ApodByDatePage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ApodByDatePage);
