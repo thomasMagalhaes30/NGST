@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import {ICoordinate} from "../../@entities/coordinate";
+import {Injectable} from '@angular/core';
+import {ICoordinate} from "@entities/coordinate";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
-import {Geolocation} from "@ionic-native/geolocation/ngx";
+import {Geolocation, Position} from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class MapService {
     "map_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
   };
 
-  constructor(private _httpClient : HttpClient) { } //}, private _geolocation: Geolocation) { }
+  constructor(private _httpClient : HttpClient) { }
 
   public getCoordinateByLocalisation(latitude : String, longitude : String) : Observable<ICoordinate> {
     let params = new HttpParams();
@@ -30,10 +30,15 @@ export class MapService {
         catchError(error => {
           let defaultCoordinate = { ...MapService.defaultCoordinate };
           if (error instanceof HttpErrorResponse){
-            defaultCoordinate.map_url = `Une erreur ${error.status} est survenu (${error.error})`
+            defaultCoordinate.map_url = `Une erreur ${error.status} est survenu (${error.error})`;
           }
           return of(defaultCoordinate);
         })
       );
   }
+
+  public async getPositionByGeolocation() :  Promise<Position> {
+    return Geolocation.getCurrentPosition();
+  }
+
 }

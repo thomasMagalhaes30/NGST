@@ -2,15 +2,14 @@ import { TestBed } from '@angular/core/testing';
 
 import { MapService } from './map.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Coordinates} from "@ionic-native/geolocation";
-import {environment} from "../../../environments/environment";
-import {ICoordinate} from "../../@entities/coordinate";
+import {ICoordinate} from "@entities/coordinate";
+import {Geolocation} from "@capacitor/geolocation";
+import {mockGeolocation} from "../../../../__mocks__/@capacitor/geolocation";
 
 
 describe('MapService', () => {
   let service: MapService;
+  let httpTestingController: HttpTestingController;
   let geolocation: Geolocation;
 
   beforeEach(() => {
@@ -18,10 +17,8 @@ describe('MapService', () => {
       imports: [ HttpClientTestingModule ],
     });
     service = TestBed.inject(MapService);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
-
-  let httpTestingController: HttpTestingController;
-  beforeEach(() => httpTestingController = TestBed.get(HttpTestingController));
 
   //vérifier qu'il n'y a aucune requête en attente
   afterEach(() => {
@@ -79,5 +76,17 @@ describe('MapService', () => {
     mySubscription.unsubscribe();
   });
 
+  it('getPositionByGeolocation', async () => {
+    spyOn(Geolocation, 'getCurrentPosition');
+    (Geolocation.getCurrentPosition as any)
+      .withArgs()
+      .and.returnValue(Promise.resolve(mockGeolocation));
 
+    let result = await service.getPositionByGeolocation();
+
+    expect(result.coords.latitude).toEqual(30);
+    expect(result.coords.longitude).toEqual(20);
+  });
+
+  // todo faire un test dans le cas ou getCurrentPosition à une erreur
 });
