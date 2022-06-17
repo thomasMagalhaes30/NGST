@@ -33,7 +33,7 @@
       <div class="row d-flex">
         <div class="ion-text-center mx-auto">
           <ion-input (ionBlur)="onBlur($event)" min="{{ dataInputDate.minimum }}" max="{{ dataInputDate.today }}" [value]="dataInputDate.today" type="date"></ion-input>
-          <app-apod strategieToGetApod="byDate" [internalEmitterDate]="emitterDate"></app-apod>
+          <app-apod [apod]="apod"></app-apod>
         </div>
       </div>
     </div>

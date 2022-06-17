@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
-import {observable, Observable, of} from "rxjs";
+import { Observable } from "rxjs";
 import { IApod } from 'src/app/@entities/apod';
 
 @Component({
@@ -8,41 +8,19 @@ import { IApod } from 'src/app/@entities/apod';
   templateUrl: './apod.component.html',
   styleUrls: ['./apod.component.scss'],
 })
-export class ApodComponent implements OnInit, OnDestroy {
+export class ApodComponent implements OnInit {
 
   @Input()
   public strategieToGetApod : string;
-
-  @Input()
-  public internalEmitterDate : EventEmitter<Date>;
 
   @Input()
   public apod: Object = {};
 
   constructor(private _nasa : NasaApodService) { }
 
-  ngOnDestroy(): void {
-    this.internalEmitterDate?.unsubscribe();
-  }
-
   ngOnInit() {
 
-    let promiseToHandle : Observable<IApod>;
-
-    switch(this.strategieToGetApod) {
-      case "byDate": {
-        if (this.internalEmitterDate) {
-          this.internalEmitterDate.asObservable().subscribe((mydate : Date) => {
-            this.fetchObservableApod(this._nasa.getApodByDate(mydate.getFullYear(),mydate.getMonth(),mydate.getDate()))
-          });
-        }
-        return;
-      }
-      default: {
-        promiseToHandle = this._nasa.getTodayApod();
-      }
-    }
-
+    let promiseToHandle : Observable<IApod> = this._nasa.getTodayApod();
     this.fetchObservableApod(promiseToHandle);
   }
 
