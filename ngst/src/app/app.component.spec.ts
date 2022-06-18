@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('AppComponent', () => {
 
@@ -10,6 +11,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [ RouterTestingModule.withRoutes([])],
     }).compileComponents();
   }));
 
@@ -24,9 +26,9 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].textContent).toContain('Inbox');
-    expect(menuItems[1].textContent).toContain('Outbox');
+    expect(menuItems.length).toEqual(5);
+    expect(menuItems[0].textContent).toContain('Apod');
+    expect(menuItems[1].textContent).toContain('Random Apod');
   }));
 
   it('should have urls', waitForAsync(() => {
@@ -34,9 +36,10 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(12);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/folder/Inbox');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/folder/Outbox');
+    expect(menuItems.length).toEqual(5);
+    console.log(menuItems[0])
+    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/apod');
+    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/randomApod');
   }));
 
 });
