@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { NasaApodService } from '../../services/nasaApod/nasa-apod.service';
+import { NasaApodService } from '@app/services/nasaApod/nasa-apod.service';
 import { Observable } from "rxjs";
 import { IApod } from 'src/app/@entities/apod';
 

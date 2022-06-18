@@ -8,7 +8,7 @@ import { RandomPageRoutingModule } from './random-routing.module';
 
 import { RandomPage } from './random.page';
 
-import {ApodComponent} from '../../components/apod/apod.component';
+import {ApodComponent} from '@app/components/apod/apod.component';
 
 @NgModule({
   imports: [

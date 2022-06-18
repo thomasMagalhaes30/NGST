@@ -14,12 +14,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="container">
-    <ion-row class="ion-justify-content-center">
-      <app-apod id="myApod" strategieToGetApod="random" [apod]="apod"></app-apod>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <ion-button id="randomAgain" (click)="injectRandomClick()" >Recevoir une image random</ion-button>
-    </ion-row>
+  <div id="container">
+    <div id="background"></div>
+    <div id="midground"></div>
+    <div id="foreground"></div>
   </div>
 </ion-content>
