@@ -34,8 +34,15 @@ export class ApodComponent implements OnInit {
 
       btn.addEventListener('click', function(){
         apodImg.setAttribute('src', apod.hdurl);
-        btn.innerHTML = "HD activée";
+        btn.innerHTML = "hd enabled";
       });
+
+      // oui c'est bien comme ça qu'il faut faire
+      //host is the element that holds the shadow root:
+      var style = document.createElement( 'style' )
+      style.innerHTML = 'img { max-height:70vh; }'
+      document.querySelector('#apodImg').shadowRoot.appendChild(style);
+
     })
     .catch(console.error);
   }
