@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ApodByDatePageRoutingModule } from './apod-by-date-routing.module';
 
 import { ApodByDatePage } from './apod-by-date.page';
-import {ApodComponent} from '../../components/apod/apod.component';
+import {ApodComponent} from '@app/components/apod/apod.component';
 
 @NgModule({
   imports: [

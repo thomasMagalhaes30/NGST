@@ -1,19 +1,14 @@
-<ion-grid>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="6">
-              <ion-item  class="text-center mx-auto">
-                <ion-img id="apodImg" [src]="apod.url" [alt]="apod.title"></ion-img>
-              </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-justify-content-center">
-            <ion-col size="6">
-              <ion-item>
-                <ion-label>{{apod.title}}</ion-label>
-              </ion-item>
-            </ion-col>
-        </ion-row>
-      <ion-row class="ion-justify-content-center">
-          <ion-button id="seeApodInHD">Voir en HD</ion-button>
-      </ion-row>
-</ion-grid>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{apod.title}}</ion-card-title>
+<!--    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="ion-text-center">
+      <ion-img id="apodImg" [src]="apod.url" [alt]="apod.title"></ion-img>
+      <ion-button id="seeApodInHD">See in hd</ion-button>
+    </div>
+    <p>{{apod.explanation}}</p>
+  </ion-card-content>
+</ion-card>

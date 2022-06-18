@@ -2,8 +2,8 @@ import {fakeAsync, TestBed} from '@angular/core/testing';
 
 import { NasaApodService } from './nasa-apod.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {environment} from "../../../environments/environment";
-import {IApod} from "../../@entities/apod";
+import {environment} from "@env/environment";
+import {IApod} from "@entities/apod";
 
 describe('NasaApodService', () => {
   let service: NasaApodService;

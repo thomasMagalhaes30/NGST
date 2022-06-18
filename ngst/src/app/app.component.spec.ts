@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('AppComponent', () => {
 
@@ -10,6 +11,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [ RouterTestingModule.withRoutes([])],
     }).compileComponents();
   }));
 
@@ -18,6 +20,26 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-  // TODO: add more tests!
+
+  it('should have menu labels', waitForAsync(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const app = fixture.nativeElement;
+    const menuItems = app.querySelectorAll('ion-label');
+    expect(menuItems.length).toEqual(5);
+    expect(menuItems[0].textContent).toContain('Apod');
+    expect(menuItems[1].textContent).toContain('Random Apod');
+  }));
+
+  it('should have urls', waitForAsync(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const app = fixture.nativeElement;
+    const menuItems = app.querySelectorAll('ion-item');
+    expect(menuItems.length).toEqual(5);
+    console.log(menuItems[0])
+    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/apod');
+    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/randomApod');
+  }));
 
 });
