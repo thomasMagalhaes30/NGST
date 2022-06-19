@@ -34,12 +34,16 @@ const routes: Routes = [
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-
+  {
+    path: 'localisation',
+    loadChildren: () => import('./pages/localisation/localisation.module').then( m => m.LocalisationPageModule)
+  },
   // ALWAYS THE LAST ONE !!!
   {
     path: '**',
     redirectTo: 'not-found',
   },
+
 ];
 
 @NgModule({
