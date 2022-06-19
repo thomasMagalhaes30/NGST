@@ -4,11 +4,17 @@
 <!--    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
   </ion-card-header>
 
-  <ion-card-content>
-    <div class="ion-text-center">
+  <ion-card-content [ngSwitch]="apod.media_type">
+    <div class="ion-text-center" *ngSwitchCase="['image', 'error'].includes(apod.media_type) ? apod.media_type : '' ">
       <ion-img id="apodImg" [src]="apod.url" [alt]="apod.title"></ion-img>
-      <ion-button id="seeApodInHD">See in hd</ion-button>
+      <ion-button id="seeApodInHD" (click)="onClickButtonHD()">See in hd</ion-button>
     </div>
+
+    <div class="ion-text-center" *ngSwitchDefault>
+      <ion-button [href]="apod.url" target="_blank" >Open url</ion-button>
+    </div>
+
     <p>{{apod.explanation}}</p>
+    <span *ngIf="apod.copyright" class="ion-float-end">© {{apod.copyright}}</span>
   </ion-card-content>
 </ion-card>

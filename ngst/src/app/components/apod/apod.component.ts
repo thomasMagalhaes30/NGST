@@ -13,13 +13,31 @@ export class ApodComponent implements OnInit {
   @Input()
   public strategieToGetApod : string;
 
+  private _apod: IApod = {} as IApod;
+  get apod(): IApod {
+    return this._apod;
+  }
+
   @Input()
-  public apod: Object = {};
+  set apod(val: IApod) {
+    this._apod = val;
+    //console.log('new value:', val); // <-- do your logic here!
+
+    switch (this.apod.media_type){
+      case 'image':
+        // oui c'est bien comme ça qu'il faut faire
+        //host is the element that holds the shadow root:
+        var style = document.createElement( 'style' )
+        style.innerHTML = 'img { max-height:70vh; }'
+        document.querySelector('#apodImg').shadowRoot.appendChild(style);
+        break;
+    }
+
+  }
 
   constructor(private _nasa : NasaApodService) { }
 
   ngOnInit() {
-
     let promiseToHandle : Observable<IApod> = this._nasa.getTodayApod();
     this.fetchObservableApod(promiseToHandle);
   }
@@ -28,23 +46,15 @@ export class ApodComponent implements OnInit {
     myObservableApod.toPromise()
     .then(apod => {
       this.apod = apod;
-
-      const apodImg = document.getElementById('apodImg');
-      const btn = document.getElementById('seeApodInHD');
-
-      btn.addEventListener('click', function(){
-        apodImg.setAttribute('src', apod.hdurl);
-        btn.innerHTML = "hd enabled";
-      });
-
-      // oui c'est bien comme ça qu'il faut faire
-      //host is the element that holds the shadow root:
-      var style = document.createElement( 'style' )
-      style.innerHTML = 'img { max-height:70vh; }'
-      document.querySelector('#apodImg').shadowRoot.appendChild(style);
-
     })
     .catch(console.error);
+  }
+
+  onClickButtonHD(){
+    const apodImg = document.getElementById('apodImg');
+    const btn = document.getElementById('seeApodInHD');
+    apodImg.setAttribute('src', this.apod.hdurl);
+    btn.innerHTML = "hd enabled";
   }
 
 }

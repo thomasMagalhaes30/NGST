@@ -11,11 +11,18 @@ import {catchError} from "rxjs/operators";
 export class NasaApodService {
 
   private static defaultApod: IApod = {
-    date: "",
-    explanation: "",
-    hdurl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original-wordmark.svg",
+    resource: "",
+    concept_tags: "",
     title: "Une erreur est survenu",
-    url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg"
+    date: "",
+    url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
+    hdurl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original-wordmark.svg",
+    media_type : "error",
+    explanation : "",
+    concepts : "",
+    thumbnail_url : "",
+    copyright : "",
+    service_version : "",
   };
 
   constructor(private _httpClient : HttpClient) { }
