@@ -20,6 +20,9 @@ export class InformationPage {
   public deviceManufacturer: string;
   public deviceWebViewVersion: string;
 
+  public mql;
+  public handleChangePrefersColorScheme;
+
   constructor() { }
 
   ngOnInit() {
@@ -33,12 +36,29 @@ export class InformationPage {
         this.deviceWebViewVersion = result.webViewVersion;
     });
 
-    this.isDarkTheme = document.body.getAttribute('data-theme')?.includes('dark');
+    // on set la valeur avec le theme déjà présent
+    this.isDarkTheme = this.isDarkThemeFunc();
+
+    this.handleChangePrefersColorScheme = () => {
+      this.isDarkTheme = this.isDarkThemeFunc();
+    }
+    //this.handleChangePrefersColorScheme.bind(this);
+
+    // on suit les changement de theme pour faire changer dynamiquement le switch
+    this.mql = window.matchMedia("(prefers-color-scheme: dark)");
+    this.mql.addEventListener("change", this.handleChangePrefersColorScheme);
+  }
+
+  ngOnDestroy(){
+    // on arrete de suivre les changements de theme pour faire changer dynamiquement le switch
+    this.mql.removeEventListener("change", this.handleChangePrefersColorScheme);
+  }
+
+  isDarkThemeFunc(){
+    return document.body.getAttribute('data-theme')?.includes('dark');
   }
 
   onClick(event){
     document.body.setAttribute('data-theme', event.detail.checked ? 'dark' : 'light');
   }
-
-
 }
