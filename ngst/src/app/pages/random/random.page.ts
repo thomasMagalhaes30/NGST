@@ -1,5 +1,4 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Platform, MenuController  } from '@ionic/angular';
 import { NasaApodService } from 'src/app/services/nasaApod/nasa-apod.service';
 import {IApod} from "@entities/apod";
 

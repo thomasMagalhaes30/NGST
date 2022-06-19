@@ -22,17 +22,9 @@ export class ApodComponent implements OnInit {
   set apod(val: IApod) {
     this._apod = val;
     //console.log('new value:', val); // <-- do your logic here!
-
-    switch (this.apod.media_type){
-      case 'image':
-        // oui c'est bien comme ça qu'il faut faire
-        //host is the element that holds the shadow root:
-        var style = document.createElement( 'style' )
-        style.innerHTML = 'img { max-height:70vh; }'
-        document.querySelector('#apodImg').shadowRoot.appendChild(style);
-        break;
-    }
-
+    document.getElementById('apodImg')?.setAttribute('src', this.apod.url);
+    const btn = document.getElementById('seeApodInHD');
+    if(btn != null) btn.innerHTML = "See in hd";
   }
 
   constructor(private _nasa : NasaApodService) { }
@@ -55,6 +47,14 @@ export class ApodComponent implements OnInit {
     const btn = document.getElementById('seeApodInHD');
     apodImg.setAttribute('src', this.apod.hdurl);
     btn.innerHTML = "hd enabled";
+  }
+
+  onIonImgWillLoad(){
+    // oui c'est bien comme ça qu'il faut faire
+    //host is the element that holds the shadow root:
+    var style = document.createElement( 'style' )
+    style.innerHTML = 'img { max-height:70vh; }'
+    document.querySelector('#apodImg').shadowRoot.appendChild(style);
   }
 
 }
