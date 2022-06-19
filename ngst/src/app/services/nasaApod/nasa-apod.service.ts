@@ -53,7 +53,7 @@ export class NasaApodService {
 
   public getRandomApod() : Observable<IApod>{
     let d = NasaApodService.randomDate();
-    return this.getApodByDate(d.getFullYear(), d.getMonth(), d.getDate());
+    return this.getApodByDate(d.getFullYear(), d.getMonth()+1, d.getDate());
   }
 
   public getTodayApod() : Observable<IApod>{
