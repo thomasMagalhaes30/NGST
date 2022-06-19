@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Platform, MenuController  } from '@ionic/angular';
 import { NasaApodService } from 'src/app/services/nasaApod/nasa-apod.service';
+import {IApod} from "@entities/apod";
 
 @Component({
   selector: 'app-random',
@@ -11,7 +12,7 @@ export class RandomPage implements OnInit {
   public name: string = "Random Apod";
 
   @Output()
-  public apod = {};
+  public apod : IApod = {} as IApod;
 
   constructor(public apodService : NasaApodService) { }
 
@@ -23,15 +24,7 @@ export class RandomPage implements OnInit {
   injectRandomClick() {
     this.apodService.getRandomApod().subscribe((apod) => {
         this.apod = apod;
-
-        const apodImg = document.getElementById('apodImg');
-        const btn = document.getElementById('seeApodInHD');
-
-        btn.addEventListener('click', function(){
-          apodImg.setAttribute('src', apod.hdurl);
-          btn.innerHTML = "HD activée";
-        });
-    })
+    });
   }
 
 }

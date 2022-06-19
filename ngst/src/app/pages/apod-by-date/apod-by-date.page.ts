@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { NasaApodService } from 'src/app/services/nasaApod/nasa-apod.service';
+import {IApod} from "@entities/apod";
 
 @Component({
   selector: 'app-apod-by-date',
@@ -12,7 +13,7 @@ export class ApodByDatePage implements OnInit {
   dataInputDate = {};
 
   @Output()
-  public apod = {};
+  public apod : IApod = {} as IApod;
 
   constructor(private nasa : NasaApodService) { }
 
@@ -28,14 +29,6 @@ export class ApodByDatePage implements OnInit {
     const dateInput = new Date(inputValue);
     this.nasa.getApodByDate(dateInput.getFullYear(), dateInput.getMonth(), dateInput.getDate()).subscribe(apod => {
       this.apod = apod;
-
-      const apodImg = document.getElementById('apodImg');
-      const btn = document.getElementById('seeApodInHD');
-
-      btn.addEventListener('click', function(){
-        apodImg.setAttribute('src', apod.hdurl);
-        btn.innerHTML = "HD activée";
-      });
     });
   }
 
