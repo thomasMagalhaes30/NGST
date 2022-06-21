@@ -1,3 +1,5 @@
+![NGST logo](ngst/src/assets/images/ngst.png)
+
 # National Gabriel and Space Thomas
 
 NGST est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - Web Transverse)
