@@ -4,3 +4,11 @@
 .d-flex {display: flex;}
 .d-flex-around { justify-content: space-around; }
 .fs24 { font-size: 24px; }
+.my { margin-top: 30px; margin-bottom: 30px;}
+.mx { margin-left: 30px; margin-right: 30px;}
+#map { min-width: 400px; display: table-cell;}
+capacitor-google-map {
+    display: inline-block;
+    width: 275px;
+    height: 400px;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MapService } from 'src/app/services/localisation/map.service';
+import { GoogleMap } from '@capacitor/google-maps';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-localisation',
@@ -30,6 +32,22 @@ export class LocalisationPage implements OnInit, OnDestroy {
         .subscribe( coords => {
           this.mapLocalisation = coords;
         });
+      
+      const mapRef = document.getElementById('map');
+
+      await GoogleMap.create({
+        id: 'my-map', // Unique identifier for this map instance
+        element: mapRef, // reference to the capacitor-google-map element
+        apiKey: environment.mapApiKey, // Your Google Maps API Key
+        config: {
+          center: {
+            // The initial position to be rendered by the map
+            lat: lat,
+            lng: lon,
+          },
+          zoom: 8, // The initial zoom level to be rendered by the map
+        },
+      });
     })
     .catch(error => this.geoError = error);
   }
