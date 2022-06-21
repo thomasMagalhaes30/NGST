@@ -2,10 +2,12 @@
   {{ geo.message }}
 </p>
 
-<div class="d-flex d-flex-around">
-  <span>Longitude : {{ map.longitude }}</span>
-  <span>Latitude : {{ map.latitude }}</span>
-</div>
-<div class="grey text-center mt50">
-  <span><a [href]="map.map_url">{{ map.map_url }}</a></span>
+<div *ngIf="!geo.message">
+  <div class="d-flex d-flex-around">
+    <span>Longitude : {{ map.longitude }}</span>
+    <span>Latitude : {{ map.latitude }}</span>
+  </div>
+  <div class="grey text-center mt50">
+    <span><a [href]="map.map_url">{{ map.map_url }}</a></span>
+  </div>
 </div>
