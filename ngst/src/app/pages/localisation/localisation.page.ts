@@ -1,4 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MapService } from 'src/app/services/localisation/map.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { MapService } from 'src/app/services/localisation/map.service';
   templateUrl: './localisation.page.html',
   styleUrls: ['./localisation.page.scss'],
 })
-export class LocalisationPage implements OnInit {
+export class LocalisationPage implements OnInit, OnDestroy {
 
   public name: string = "Localisation";
 
@@ -16,6 +17,8 @@ export class LocalisationPage implements OnInit {
   @Output()
   public geoError = {};
 
+  private subscribtion: Subscription;
+
   constructor(private _map : MapService) { }
 
   ngOnInit() {
@@ -23,16 +26,16 @@ export class LocalisationPage implements OnInit {
     .then( async r => {
       const lon = r.coords.longitude;
       const lat = r.coords.latitude;
-      console.log(lon);
-      console.log(lat);
-
-      await this._map.getCoordinateByLocalisation(lat.toString(),lon.toString())
+      this.subscribtion = await this._map.getCoordinateByLocalisation(lat.toString(),lon.toString())
         .subscribe( coords => {
           this.mapLocalisation = coords;
-          console.log(coords);
         });
     })
     .catch(error => this.geoError = error);
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
   }
 
 }
