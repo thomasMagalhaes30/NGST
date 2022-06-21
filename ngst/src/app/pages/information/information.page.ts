@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Device } from '@capacitor/device';
 
-
-
 @Component({
   selector: 'app-information',
   templateUrl: './information.page.html',
