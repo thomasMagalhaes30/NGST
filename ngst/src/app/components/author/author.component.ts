@@ -3,11 +3,15 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-author',
   template: `
-<li class="deco-none">
-  <img src="{{ githubAvatar }}" height="48" width="48" />
-  <span class="m-left ft24 ligthblue">{{ fullName }}</span>
-  <a class="ft24 m-left greenyellow" href="https://github.com/{{ githubUsername }}"> {{ githubUsername }} (Github)</a>
-</li>
+<div class="author ion-padding-bottom">
+  <img src="{{ githubAvatar }}" class="github-avatar"/>
+  <div class="text-avatar ion-padding-start">
+    <span class="ion-padding-end full-name-author">{{ fullName }}</span>
+    <a href="https://github.com/{{ githubUsername }}" target="_blank">
+    <ion-icon name="logo-github" size="large"></ion-icon>
+    </a>
+  </div>
+</div>
 `,
   styleUrls: ['./author.component.scss'],
 })
