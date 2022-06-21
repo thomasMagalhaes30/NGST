@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InformationPageRoutingModule } from './information-routing.module';
 
 import { InformationPage } from './information.page';
-
+import { AuthorComponent } from '../../components/author/author.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +15,7 @@ import { InformationPage } from './information.page';
     IonicModule,
     InformationPageRoutingModule
   ],
-  declarations: [InformationPage]
+  declarations: [InformationPage, AuthorComponent],
+  exports: [ AuthorComponent ]
 })
 export class InformationPageModule {}
