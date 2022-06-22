@@ -1,6 +1,23 @@
-.grey {color: grey;}
-.mt50 {margin-top: 50px;}
-.text-center {text-align: center}
+.grey {color: var(--ion-color-step-550);}
 .d-flex {display: flex;}
 .d-flex-around { justify-content: space-around; }
 .fs24 { font-size: 24px; }
+.my { margin-top: 30px; margin-bottom: 30px;}
+.mx { margin-left: 30px; margin-right: 30px;}
+
+@media screen and (max-width: 1024px)
+{
+    capacitor-google-map {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+    }
+}
+@media screen and (min-width: 1025px)
+{
+    capacitor-google-map {
+        display: inline-block;
+        width: 400px;
+        height: 400px;
+    }
+}
