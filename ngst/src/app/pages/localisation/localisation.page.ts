@@ -35,7 +35,7 @@ export class LocalisationPage implements OnInit, OnDestroy {
       
       const mapRef = document.getElementById('map');
 
-      await GoogleMap.create({
+      const map = await GoogleMap.create({
         id: 'my-map', // Unique identifier for this map instance
         element: mapRef, // reference to the capacitor-google-map element
         apiKey: environment.mapApiKey, // Your Google Maps API Key
@@ -45,8 +45,16 @@ export class LocalisationPage implements OnInit, OnDestroy {
             lat: lat,
             lng: lon,
           },
-          zoom: 8, // The initial zoom level to be rendered by the map
+          zoom: 15, // The initial zoom level to be rendered by the map
         },
+      });
+
+      await map.addMarker({
+        coordinate: {
+          lat: lat,
+          lng: lon,
+        },
+        title: 'Your position 🚀',
       });
     })
     .catch(error => this.geoError = error);

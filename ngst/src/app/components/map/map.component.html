@@ -1,4 +1,4 @@
-<p class="text-center grey fs24">
+<p class="ion-text-center grey fs24">
   {{ geo.message }}
 </p>
 
@@ -7,8 +7,8 @@
     <span>Longitude : {{ map.longitude }}</span>
     <span>Latitude : {{ map.latitude }}</span>
   </div>
-  <div class="grey text-center mt50">
-    <span><a [href]="map.map_url">{{ map.map_url }}</a></span>
+  <div class="ion-text-center">
+    <ion-button [href]="map.map_url" target="_blank" >Your position in Google Maps</ion-button>
   </div>
   <div class="my mx">
     <capacitor-google-map id="map"></capacitor-google-map>
