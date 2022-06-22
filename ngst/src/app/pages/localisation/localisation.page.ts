@@ -24,6 +24,7 @@ export class LocalisationPage implements OnInit, OnDestroy {
   constructor(private _map : MapService) { }
 
   ngOnInit() {
+
     this._map.getPositionByGeolocation()
     .then( async r => {
       const lon = r.coords.longitude;
@@ -61,7 +62,7 @@ export class LocalisationPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscribtion !== null) {
+    if (this.subscribtion) {
       this.subscribtion.unsubscribe();
     }
   }
