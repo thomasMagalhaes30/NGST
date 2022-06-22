@@ -61,7 +61,9 @@ export class LocalisationPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribtion.unsubscribe();
+    if (this.subscribtion !== null) {
+      this.subscribtion.unsubscribe();
+    }
   }
 
 }
