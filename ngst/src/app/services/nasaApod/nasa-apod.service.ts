@@ -27,6 +27,11 @@ export class NasaApodService {
 
   constructor(private _httpClient : HttpClient) { }
 
+  public getApodByDateObject(d : Date) : Observable<IApod>
+  {
+    return this.getApodByDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+  }
+
   /**
    * Retourne une date aléatoire entre une date de début et une date de fin
    * @param start la date de début, min date par défaut (attention la date doit être après le 16-06-1995)
@@ -59,16 +64,12 @@ export class NasaApodService {
   }
 
   public getRandomApod() : Observable<IApod>{
-    let d = NasaApodService.randomDate();
-    return this.getApodByDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+    return this.getApodByDateObject(NasaApodService.randomDate());
   }
 
   public getTodayApod() : Observable<IApod>{
     return this.getApodByDate();
   }
 
-  public getApodByDateObject(d : Date) : Observable<IApod>
-  {
-    return this.getApodByDate(d.getFullYear(), d.getMonth()+1, d.getDate());
-  }
+
 }
