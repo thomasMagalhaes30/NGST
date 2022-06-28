@@ -66,4 +66,9 @@ export class NasaApodService {
   public getTodayApod() : Observable<IApod>{
     return this.getApodByDate();
   }
+
+  public getApodByDateObject(d : Date) : Observable<IApod>
+  {
+    return this.getApodByDate(d.getFullYear(), d.getMonth()+1, d.getDate());
+  }
 }

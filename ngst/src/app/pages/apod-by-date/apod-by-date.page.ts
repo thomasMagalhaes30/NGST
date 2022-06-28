@@ -27,7 +27,8 @@ export class ApodByDatePage implements OnInit {
   onBlur(event) {
     const inputValue = event.target.value;
     const dateInput = new Date(inputValue);
-    this.nasa.getApodByDate(dateInput.getFullYear(), dateInput.getMonth(), dateInput.getDate()).subscribe(apod => {
+    this.nasa.getApodByDateObject(dateInput).subscribe(apod =>
+    {
       this.apod = apod;
     });
   }
