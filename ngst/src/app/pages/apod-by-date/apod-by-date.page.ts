@@ -24,7 +24,7 @@ export class ApodByDatePage implements OnInit {
     this.dataInputDate["minimum"] = idPast.toISOString().slice(0, 10);
   }
 
-  onBlur(event) {
+  onChange(event) {
     const inputValue = event.target.value;
     const dateInput = new Date(inputValue);
     this.nasa.getApodByDateObject(dateInput).subscribe(apod =>
