@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'ionic-app-base',
+  appName: 'NGST',
   webDir: 'www',
   bundledWebRuntime: false,
   cordova: {
