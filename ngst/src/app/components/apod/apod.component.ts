@@ -11,7 +11,7 @@ import { IApod } from 'src/app/@entities/apod';
 export class ApodComponent implements OnInit {
 
   @Input()
-  public strategieToGetApod : string;
+  public loadTodayApodOnInit : boolean = true;
 
   private _apod: IApod = {} as IApod;
   get apod(): IApod {
@@ -20,9 +20,8 @@ export class ApodComponent implements OnInit {
 
   @Input()
   set apod(val: IApod) {
-    this._apod = val;
     //console.log('new value:', val); // <-- do your logic here!
-    document.getElementById('apodImg')?.setAttribute('src', this.apod.url);
+    this._apod = val;
     const btn = document.getElementById('seeApodInHD');
     if(btn != null) btn.innerHTML = "See in hd";
   }
@@ -30,8 +29,9 @@ export class ApodComponent implements OnInit {
   constructor(private _nasa : NasaApodService) { }
 
   ngOnInit() {
-    let promiseToHandle : Observable<IApod> = this._nasa.getTodayApod();
-    this.fetchObservableApod(promiseToHandle);
+    if (this.loadTodayApodOnInit){
+      this.fetchObservableApod(this._nasa.getTodayApod());
+    }
   }
 
   fetchObservableApod(myObservableApod : Observable<IApod>) {
@@ -50,10 +50,15 @@ export class ApodComponent implements OnInit {
   }
 
   onIonImgWillLoad(){
+    // on ajoute pas le style si l'image en possède déjà un
+    if (document.querySelector('#apodImg').shadowRoot.styleSheets.length == 1 ){
+      return;
+    }
+
     // oui c'est bien comme ça qu'il faut faire
     //host is the element that holds the shadow root:
-    var style = document.createElement( 'style' )
-    style.innerHTML = 'img { max-height:70vh; }'
+    let style = document.createElement( 'style' );
+    style.innerHTML = 'img { max-height:70vh; }';
     document.querySelector('#apodImg').shadowRoot.appendChild(style);
   }
 

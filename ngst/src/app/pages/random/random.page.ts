@@ -16,9 +16,8 @@ export class RandomPage implements OnInit {
   constructor(public apodService : NasaApodService) { }
 
   ngOnInit() {
-
+    this.injectRandomClick();
   }
-
 
   injectRandomClick() {
     this.apodService.getRandomApod().subscribe((apod) => {

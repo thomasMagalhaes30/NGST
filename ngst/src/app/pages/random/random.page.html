@@ -18,6 +18,6 @@
       <div class="ion-text-center">
         <ion-button id="randomAgain" color="tertiary" (click)="injectRandomClick()" >Get a random Apod</ion-button>
       </div>
-      <app-apod id="myApod" strategieToGetApod="random" [apod]="apod"></app-apod>
+      <app-apod id="myApod" loadTodayApodOnInit="false" [apod]="apod"></app-apod>
   </div>
 </ion-content>
