@@ -21,32 +21,49 @@ NGST est un projet de Licence Pro de l'IUT Clermont-Ferrand 2022. (Période 3 - 
 - [wheretheiss.at](https://wheretheiss.at/w/developer)
 
 ## 🚀 Installation
-```sh
-cd ngst/
-```
-
+Allez dans `NGST/ngst`
 ```bash
 npm install
 ```
-aller dans `NGST/ngst/src/environments`
 
-Pour une configuration local
+Allez dans `NGST/ngst/src/environments`
+
+Pour une créer une configuration local
 ```bash
-cp src/environments/environment.ts src/environments/environment.local.ts
+cp environment.ts environment.local.ts
 ```
 puis completez le !
 
 ## 🚀 Lancement
+Allez dans `NGST/ngst`
 ```bash
 ionic serve
 ```
-ou avec la configuration
+⚠ ou avec la configuration (necessaire car contient le clé d'api)
 ```
 ionic serve --configuration local
 ```
 lancer avec la configuration et sur une autre adresse que localhost (permet de tester sur navigateur depuis un portable par exemple)
 ```
 ionic serve --address=$(hostname -I | cut -d" " -f1) --configuration=local
+```
+
+## 🚀 Lancement Android
+Allez dans `NGST/ngst`
+```bash
+ionic cap copy
+```
+⚠ ou avec la configuration (necessaire car contient le clé d'api)
+```bash
+ionic cap copy --configuration=local
+```
+
+Ouvrez avec android studio `NGST/ngst/android`
+
+#### Commandes suplémentaires (pas utile pour le lancement)
+Permet de mettre à jour les ressources (icon et splash) 
+```bash
+capacitor-resources -t cover
 ```
 
 ## 🚀 Lancer les tests
