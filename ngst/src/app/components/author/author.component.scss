@@ -1,0 +1,20 @@
+.author {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.github-avatar {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--ion-color-tertiary);
+  border-radius: 4px;
+}
+
+.text-avatar {
+  font-size: 18px;
+}
+
+.full-name-author {
+  vertical-align: super;
+}

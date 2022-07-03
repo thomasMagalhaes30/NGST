@@ -1,0 +1,8 @@
+{
+  "name": "NGST",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

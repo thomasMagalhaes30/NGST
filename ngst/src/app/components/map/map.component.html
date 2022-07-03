@@ -1,0 +1,16 @@
+<p class="ion-text-center grey fs24">
+  {{ geo.message }}
+</p>
+
+<div *ngIf="!geo.message">
+  <div class="d-flex d-flex-around">
+    <span>Longitude : {{ map.longitude }}</span>
+    <span>Latitude : {{ map.latitude }}</span>
+  </div>
+  <div class="ion-text-center">
+    <ion-button [href]="map.map_url" target="_blank" >Your position in Google Maps</ion-button>
+  </div>
+  <div class="my mx">
+    <capacitor-google-map id="map"></capacitor-google-map>
+  </div>
+</div>

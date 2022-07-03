@@ -5,12 +5,15 @@ name: Test
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
+    paths:
+      - 'ngst/**'
     branches:
-      -main
+      - main
+      - dev
   pull_request:
     branches:
-      -main
-      -dev
+      - main
+      - dev
       
 jobs:
   build:
@@ -22,19 +25,21 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: ng test --configuration ci --code-coverage
+      #- name: Build
+      #  run: npm run build -- --configuration production
+
+      - name: npm ci and npm run build
         run: |
-          ng test --configuration ci --code-coverage
+          cd ngst
+          npm ci
+          npm run build
+
+      - name: Test
+        run: |
+          cd ngst
+          npm test -- --configuration=ci --code-coverage --browsers ChromeHeadless

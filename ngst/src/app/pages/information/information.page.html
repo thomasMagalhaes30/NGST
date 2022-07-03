@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="flashlight" color="secondary" class="ion-padding-end"></ion-icon> Meaning
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              NGST
+              <p>
+                National Gabriel and Space Thomas
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              APOD
+              <p>
+                Astronomy Picture of the Day
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="color-wand" color="secondary" class="ion-padding-end"></ion-icon> Authors
+          </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <app-author githubUsername="thomasMagalhaes30" fullName="Thomas Magalhaes" githubAvatar="https://avatars.githubusercontent.com/u/74173960"></app-author>
+        <app-author githubUsername="Amiralgaby" fullName="Gabriel Theuws" githubAvatar="https://avatars.githubusercontent.com/u/64040180"></app-author>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="settings" color="secondary" class="ion-padding-end"></ion-icon> Settings
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Utiliser un composant ? -->
+        <ion-list>
+          <ion-item>
+            <ion-icon slot="start" name="moon"></ion-icon>
+            Toggle Dark Theme
+            <ion-toggle (ionChange)="onClick($event)" checked="{{ isDarkTheme??false }}" slot="end"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="terminal" color="secondary" class="ion-padding-end"></ion-icon> About your device
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>Name:</strong>	{{ deviceName??"unknown" }}<br>
+        <strong>Model:</strong>	{{ deviceModel??"unknown" }}<br>
+        <strong>Platform:</strong>	{{ devicePlatform??"unknown" }}<br>
+        <strong>OperatingSystem:</strong>	{{ deviceOperatingSystem??"unknown" }}<br>
+        <strong>OsVersion:</strong>	{{ deviceOsVersion??"unknown" }}<br>
+        <strong>Manufacturer:</strong>	{{ deviceManufacturer??"unknown" }}<br>
+        <strong>WebViewVersion:</strong>	{{ deviceWebViewVersion??"unknown" }}<br>
+      </ion-card-content>
+    </ion-card>
+
+
+  </div>
+</ion-content>
